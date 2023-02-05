@@ -1,0 +1,39 @@
+<div class="d-flex flex-column align-items-center">
+  <form class="name-form" novalidate>
+    <div class="row justify-content-center">
+      <div class="col-10 d-flex flex-column align-items-center">
+        <h3 id="subtitle">Enter players' names</h3>
+        <div
+          class="form-group w-75 d-flex flex-column justify-content-center align-items-between mt-3"
+          *ngFor="let name of names; let i = index"
+        >
+          <label for=""> Player {{ i + 1 }} </label>
+          <input
+            type="text"
+            required
+            class="form-control"
+            [value]="names[i].name"
+            [formControl]="names[i]"
+            [class.is-invalid]="names[i].invalid && names[i].touched"
+          />
+          <small
+            class="text-danger"
+            [class.d-none]="names[i].valid || names[i].untouched"
+            >Name is required</small
+          >
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          class="btn btn-primary mt-4"
+          (click)="onSubmit()"
+          [disabled]="!namesForm.valid"
+        >
+          Start!
+        </button>
+        <!-- <button (click)="loadApiData()">Load API</button> -->
+      </div>
+    </div>
+  </form>
+</div>
